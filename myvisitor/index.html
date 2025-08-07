@@ -83,6 +83,25 @@
             justify-content: flex-end;
             gap: 15px;
             margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .reset-button {
+            background: linear-gradient(135deg, #B90024 0%, #8B0019 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(185, 0, 36, 0.2);
+        }
+
+        .reset-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(185, 0, 36, 0.3);
         }
 
         .multi-dropdown {
@@ -234,6 +253,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             border: 1px solid #EEF9F7;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
 
         .stat-card:hover {
@@ -264,6 +284,45 @@
             font-weight: 600;
             color: #001A41;
             line-height: 1;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* Tooltip styles */
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.4;
+            pointer-events: none;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            white-space: nowrap;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            margin-bottom: 8px;
+        }
+
+        .tooltip.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(0, 0, 0, 0.9);
         }
 
         .charts-section {
@@ -711,6 +770,51 @@
             transform: translateY(0);
         }
 
+        /* Duration Chart Styles */
+        .duration-chart {
+            padding: 20px 0;
+        }
+
+        .duration-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
+
+        .duration-label {
+            min-width: 120px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4a5568;
+            text-align: right;
+        }
+
+        .duration-bar-container {
+            flex: 1;
+            height: 24px;
+            background: #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .duration-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #54BDA6, #86C8EE);
+            border-radius: 12px;
+            transition: width 1s ease-in-out;
+            position: relative;
+        }
+
+        .duration-count {
+            min-width: 40px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
         @media (max-width: 768px) {
             .additional-charts {
                 grid-template-columns: 1fr;
@@ -755,9 +859,10 @@
         <div class="controls">
             <div class="multi-dropdown" id="periodDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('periodDropdown')">
-                    <span>Select Period</span>
+                    <span>All</span>
                 </div>
                 <div class="multi-dropdown-menu">
+                    <div class="multi-dropdown-item" onclick="selectPeriod('All')">All</div>
                     <div class="multi-dropdown-category">
                         <div class="multi-dropdown-item">Month</div>
                         <div class="multi-dropdown-submenu">
@@ -795,9 +900,10 @@
             </div>
             <div class="multi-dropdown" id="areaDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('areaDropdown')">
-                    <span>Area</span>
+                    <span>All</span>
                 </div>
                 <div class="multi-dropdown-menu">
+                    <div class="multi-dropdown-item" onclick="selectArea('All')">All</div>
                     <div class="multi-dropdown-item" onclick="selectArea('Head Office')">Head Office</div>
                     <div class="multi-dropdown-item" onclick="selectArea('Area 1')">Area 1</div>
                     <div class="multi-dropdown-item" onclick="selectArea('Area 2')">Area 2</div>
@@ -807,18 +913,19 @@
             </div>
             <div class="multi-dropdown" id="regionalDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('regionalDropdown')">
-                    <span>Regional</span>
+                    <span>All</span>
                 </div>
                 <div class="multi-dropdown-menu">
+                    <div class="multi-dropdown-item" onclick="selectRegional('All')">All</div>
                     <div class="multi-dropdown-item" onclick="selectRegional('Head Office')">Head Office</div>
                     <div class="multi-dropdown-item" onclick="selectRegional('Jabotabek')">Jabotabek</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Jawa Barat')">Jawa Barat</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Jawa Tengah')">Jawa Tengah</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Jawa Timur')">Jawa Timur</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('West Java')">West Java</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('Central Java')">Central Java</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('East Java')">East Java</div>
                     <div class="multi-dropdown-item" onclick="selectRegional('Balinusra')">Balinusra</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Sumbagut')">Sumbagut</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Sumbagteng')">Sumbagteng</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Sumbagsel')">Sumbagsel</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('North Sumatra')">North Sumatra</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('Central Sumatra')">Central Sumatra</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('South Sumatra')">South Sumatra</div>
                     <div class="multi-dropdown-item" onclick="selectRegional('Sulawesi')">Sulawesi</div>
                     <div class="multi-dropdown-item" onclick="selectRegional('Papua Maluku')">Papua Maluku</div>
                     <div class="multi-dropdown-item" onclick="selectRegional('Kalimantan')">Kalimantan</div>
@@ -826,9 +933,10 @@
             </div>
             <div class="multi-dropdown" id="directorateDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('directorateDropdown')">
-                    <span>Directorate</span>
+                    <span>All</span>
                 </div>
                 <div class="multi-dropdown-menu">
+                    <div class="multi-dropdown-item" onclick="selectDirectorate('All')">All</div>
                     <div class="multi-dropdown-item" onclick="selectDirectorate('IT Directorate')">IT Directorate</div>
                     <div class="multi-dropdown-item" onclick="selectDirectorate('Marketing Directorate')">Marketing Directorate</div>
                     <div class="multi-dropdown-item" onclick="selectDirectorate('Finance Directorate')">Finance Directorate</div>
@@ -839,6 +947,7 @@
                     <div class="multi-dropdown-item" onclick="selectDirectorate('Planning and Transformation Directorate')">Planning and Transformation Directorate</div>
                 </div>
             </div>
+            <button class="reset-button" onclick="resetAllFilters()">Reset Filters</button>
         </div>
 
         <div class="month-indicator" id="monthIndicator">
@@ -851,16 +960,17 @@
                 <div class="stat-value">47</div>
             </div>
             <div class="stat-card">
-                <div class="stat-title">Monthly Visitors</div>
+                <div class="stat-title">Average Visitors</div>
                 <div class="stat-value">47</div>
             </div>
             <div class="stat-card">
-                <div class="stat-title">Daily Average Visitors</div>
-                <div class="stat-value">47</div>
+                <div class="stat-title">Average Visitor Duration</div>
+                <div class="stat-value">3 hour</div>
             </div>
             <div class="stat-card">
                 <div class="stat-title">Peak Visit Time</div>
-                <div class="stat-company">Afternoon</div>
+                <div class="stat-company" id="peakTime" onmouseenter="showTooltip(event, 'Afternoon: 12:00 PM - 02 :00 PM')" onmouseleave="hideTooltip()">Afternoon</div>
+                <div class="tooltip" id="peakTimeTooltip">Afternoon: 12:00 PM - 02:00 PM</div>
             </div>
         </div>
 
@@ -894,8 +1004,8 @@
             </div>
 
             <div class="chart-card">
-                <div class="chart-title">Top 10 Visiting Companies</div>
-                <ul class="top-list" id="companiesList">
+                <div class="chart-title">Top 10 Most Visited Directorates</div>
+                <ul class="top-list" id="directoratesList">
                     <!-- Content will be generated by JavaScript -->
                 </ul>
                 <div class="scroll-indicator">
@@ -940,7 +1050,7 @@
 
         <div class="additional-charts">
             <div class="mini-chart-card">
-                <div class="mini-chart-title">Visitor Status Distribution</div>
+                <div class="mini-chart-title">Visitor Purpose Distribution</div>
                 <div class="pie-chart-container">
                     <svg width="320" height="320" id="pieChart" class="pie-chart-svg">
                         <defs>
@@ -974,12 +1084,9 @@
             </div>
 
             <div class="mini-chart-card">
-                <div class="mini-chart-title">Top 10 Host Employees</div>
-                <ul class="top-list" id="employeesList">
+                <div class="mini-chart-title">Visit Duration Distribution</div>
+                <div class="duration-chart" id="durationChart">
                     <!-- Content will be generated by JavaScript -->
-                </ul>
-                <div class="scroll-indicator">
-                    ↓ Scroll to see more
                 </div>
             </div>
         </div>
@@ -1001,73 +1108,93 @@
             visitorData[index + 1] = visitors;
         });
 
-        // Data for visitor status distribution with actual counts
+        // Data for visitor purpose distribution
         const totalVisitors = 1000;
-        const statusData = [
+        const purposeData = [
             { 
-                status: 'Active', 
-                percentage: 45, 
-                count: Math.round(totalVisitors * 0.45),
+                purpose: 'Meeting/Visit', 
+                percentage: 35, 
+                count: Math.round(totalVisitors * 0.35),
                 color: 'url(#grad1)',
                 solidColor: '#54BDA6'
             },
             { 
-                status: 'Waiting for Approval', 
+                purpose: 'Audit', 
                 percentage: 25, 
                 count: Math.round(totalVisitors * 0.25),
                 color: 'url(#grad2)',
                 solidColor: '#86C8EE'
             },
             { 
-                status: 'Email Not Validated', 
-                percentage: 15, 
-                count: Math.round(totalVisitors * 0.15),
+                purpose: 'Project', 
+                percentage: 20, 
+                count: Math.round(totalVisitors * 0.20),
                 color: 'url(#grad3)',
                 solidColor: '#682F9B'
             },
             { 
-                status: 'Rejected', 
-                percentage: 10, 
-                count: Math.round(totalVisitors * 0.10),
+                purpose: 'Troubleshoot', 
+                percentage: 12, 
+                count: Math.round(totalVisitors * 0.12),
                 color: 'url(#grad4)',
                 solidColor: '#B90024'
             },
             { 
-                status: 'Deactivated', 
-                percentage: 5, 
-                count: Math.round(totalVisitors * 0.05),
+                purpose: 'Preventive Maintenance', 
+                percentage: 8, 
+                count: Math.round(totalVisitors * 0.08),
                 color: 'url(#grad5)',
                 solidColor: '#FFA500'
             }
         ];
 
-        // Host employees data
-        const hostsData = [
-            { name: "Ahmad Rizki", visitors: 125 },
-            { name: "Sari Dewi", visitors: 118 },
-            { name: "Budi Santoso", visitors: 105 },
-            { name: "Maya Sari", visitors: 98 },
-            { name: "Andi Wijaya", visitors: 87 },
-            { name: "Rina Kartika", visitors: 82 },
-            { name: "Dedi Kurniawan", visitors: 76 },
-            { name: "Lina Handayani", visitors: 69 },
-            { name: "Rudi Hermawan", visitors: 63 },
-            { name: "Fitri Rahayu", visitors: 58 }
+        // Visit duration data
+        const durationData = [
+            { range: '< 1 hour', count: 45 },
+            { range: '1-2 hours', count: 78 },
+            { range: '2-4 hours', count: 125 },
+            { range: '4-6 hours', count: 89 },
+            { range: '6-8 hours', count: 34 },
+            { range: '> 8 hours', count: 12 }
         ];
 
-        // Companies data
-        const companiesData = [
-            { name: "PT Huawei Technologies", visitors: 1250 },
-            { name: "PT Bank Central Asia", visitors: 1180 },
-            { name: "PT Astra International", visitors: 1050 },
-            { name: "PT Pertamina", visitors: 980 },
-            { name: "PT Unilever Indonesia", visitors: 875 },
-            { name: "PT Gudang Garam", visitors: 820 },
-            { name: "PT Indofood Sukses Makmur", visitors: 760 },
-            { name: "PT Semen Indonesia", visitors: 695 },
-            { name: "PT Djarum", visitors: 630 },
-            { name: "PT Mayora Indah", visitors: 580 }
+        const directoratesData = [
+            { name: "CEO's Office Directorate", visitors: 60 },
+            { name: "Network Directorate", visitors: 55 },
+            { name: "Sales Directorate", visitors: 50 },
+            { name: "Human Capital Management Directorate", visitors: 45 },
+            { name: "Marketing Directorate", visitors: 40 },
+            { name: "Finance Directorate", visitors: 35 },
+            { name: "IT Directorate", visitors: 30 },
+            { name: "Planning and Transformation Directorate", visitors: 25 }
         ];
+
+        // Tooltip functions
+        function showTooltip(event, text) {
+            const tooltip = document.getElementById('peakTimeTooltip');
+            tooltip.textContent = text;
+            tooltip.classList.add('show');
+        }
+
+        function hideTooltip() {
+            const tooltip = document.getElementById('peakTimeTooltip');
+            tooltip.classList.remove('show');
+        }
+
+        // Reset all filters function
+        function resetAllFilters() {
+            // Reset all dropdowns to "All"
+            document.querySelector('#periodDropdown .multi-dropdown-toggle span').textContent = 'All';
+            document.querySelector('#areaDropdown .multi-dropdown-toggle span').textContent = 'All';
+            document.querySelector('#regionalDropdown .multi-dropdown-toggle span').textContent = 'All';
+            document.querySelector('#directorateDropdown .multi-dropdown-toggle span').textContent = 'All';
+            
+            // Reset month indicator to August (default)
+            document.getElementById('monthIndicator').textContent = 'August 2025';
+            
+            // Close all dropdowns
+            document.querySelectorAll('.multi-dropdown').forEach(d => d.classList.remove('open'));
+        }
 
         // Multi-dropdown functions
         function toggleMultiDropdown(dropdownId) {
@@ -1090,7 +1217,9 @@
             // Update month indicator
             const monthIndicator = document.getElementById('monthIndicator');
             
-            if (period.includes('Q') || period.includes('H') || period.length === 4) {
+            if (period === 'All') {
+                monthIndicator.textContent = 'August 2025';
+            } else if (period.includes('Q') || period.includes('H') || period.length === 4) {
                 monthIndicator.textContent = `${period} 2025`;
             } else {
                 monthIndicator.textContent = `${period} 2025`;
@@ -1117,7 +1246,7 @@
 
         // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
-            if (!event.target.closest('.multi-dropdown')) {
+            if (!event.target.closest('.multi-dropdown') && !event.target.closest('.reset-button')) {
                 document.querySelectorAll('.multi-dropdown').forEach(d => d.classList.remove('open'));
             }
         });
@@ -1161,12 +1290,12 @@
             tooltip.classList.remove('show');
         }
 
-        function showPieTooltip(event, status, count, percentage) {
+        function showPieTooltip(event, purpose, count, percentage) {
             const tooltip = document.getElementById('pie-tooltip');
             const rect = event.target.getBoundingClientRect();
             
             tooltip.innerHTML = `
-                <div><strong>${status}</strong></div>
+                <div><strong>${purpose}</strong></div>
                 <div>Count: ${count} visitors</div>
                 <div>Percentage: ${percentage}%</div>
             `;
@@ -1343,11 +1472,11 @@
             });
         }
 
-        // Generate pie chart for visitor status
+        // Generate pie chart for visitor purpose
         function generatePieChart() {
             const centerX = 0;
             const centerY = 0;
-            const radius = 120; // Increased from 80 to 120
+            const radius = 120;
             let currentAngle = -90; // Start from top
 
             const slicesGroup = document.getElementById('pieSlices');
@@ -1356,7 +1485,7 @@
             slicesGroup.innerHTML = '';
             legendContainer.innerHTML = '';
 
-            statusData.forEach((data, index) => {
+            purposeData.forEach((data, index) => {
                 const sliceAngle = (data.percentage / 100) * 360;
                 const startAngle = currentAngle;
                 const endAngle = currentAngle + sliceAngle;
@@ -1386,7 +1515,7 @@
                 
                 path.addEventListener('mouseenter', function(e) {
                     this.style.transform = 'scale(1.05)';
-                    showPieTooltip(e, data.status, data.count, data.percentage);
+                    showPieTooltip(e, data.purpose, data.count, data.percentage);
                 });
                 
                 path.addEventListener('mouseleave', function() {
@@ -1401,7 +1530,7 @@
                 legendItem.className = 'pie-legend-item';
                 legendItem.innerHTML = `
                     <div class="pie-legend-color" style="background-color: ${data.solidColor}"></div>
-                    <span>${data.status} (${data.percentage}%)</span>
+                    <span>${data.purpose} (${data.percentage}%)</span>
                 `;
                 legendContainer.appendChild(legendItem);
 
@@ -1409,21 +1538,21 @@
             });
         }
 
-        function generateCompaniesList() {
-            const listElement = document.getElementById('companiesList');
+        function generateDirectoratesList() {
+            const listElement = document.getElementById('directoratesList');
             let html = '';
 
-            const sortedCompanies = companiesData.sort((a, b) => b.visitors - a.visitors);
+            const sortedDirectorates = directoratesData.sort((a, b) => b.visitors - a.visitors);
 
-            sortedCompanies.forEach((company, index) => {
+            sortedDirectorates.forEach((directorate, index) => {
                 const rank = index + 1;
                 html += `
                     <li class="top-item">
                         <div class="top-item-left">
                             <div class="top-rank rank-${rank}">${rank}</div>
-                            <div class="top-name">${company.name}</div>
+                            <div class="top-name">${directorate.name}</div>
                         </div>
-                        <div class="top-value">${company.visitors.toLocaleString('en-US')}</div>
+                        <div class="top-value">${directorate.visitors.toLocaleString('en-US')}</div>
                     </li>
                 `;
             });
@@ -1431,33 +1560,33 @@
             listElement.innerHTML = html;
         }
 
-        function generateEmployeesList() {
-            const listElement = document.getElementById('employeesList');
+        function generateDurationChart() {
+            const container = document.getElementById('durationChart');
+            const maxCount = Math.max(...durationData.map(d => d.count));
+            
             let html = '';
-
-            const sortedEmployees = hostsData.sort((a, b) => b.visitors - a.visitors);
-
-            sortedEmployees.forEach((employee, index) => {
-                const rank = index + 1;
+            durationData.forEach(item => {
+                const percentage = (item.count / maxCount) * 100;
+                
                 html += `
-                    <li class="top-item">
-                        <div class="top-item-left">
-                            <div class="top-rank rank-${rank}">${rank}</div>
-                            <div class="top-name">${employee.name}</div>
+                    <div class="duration-bar">
+                        <div class="duration-label">${item.range}</div>
+                        <div class="duration-bar-container">
+                            <div class="duration-bar-fill" style="width: ${percentage}%"></div>
                         </div>
-                        <div class="top-value">${employee.visitors.toLocaleString('en-US')}</div>
-                    </li>
+                        <div class="duration-count">${item.count}</div>
+                    </div>
                 `;
             });
-
-            listElement.innerHTML = html;
+            
+            container.innerHTML = html;
         }
 
         // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', function() {
             generateHeatmap();
-            generateCompaniesList();
-            generateEmployeesList();
+            generateDirectoratesList();
+            generateDurationChart();
             drawDailyChart();
             generatePieChart();
         });
