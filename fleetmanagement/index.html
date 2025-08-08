@@ -210,6 +210,24 @@
             color: white;
         }
 
+        .reset-filter-btn {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #2d3748;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reset-filter-btn:hover {
+            border-color: #54BDA6;
+            box-shadow: 0 4px 12px rgba(84, 189, 166, 0.15);
+            transform: translateY(-1px);
+        }
+
         .month-indicator {
             display: inline-block;
             padding: 8px 16px;
@@ -606,14 +624,15 @@
             border-radius: 2px;
         }
 
-        .additional-charts {
+        /* Combined sections styles */
+        .combined-sections {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin-top: 30px;
         }
 
-        .mini-chart-card {
+        .combined-card {
             background: white;
             border-radius: 20px;
             padding: 25px;
@@ -623,37 +642,7 @@
             overflow: hidden;
         }
 
-        .mini-chart-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #86C8EE 0%, #54BDA6 50%, #682F9B 100%);
-        }
-
-        .mini-chart-title {
-            font-family: 'Telkomsel Batik Sans';
-            font-size: 20px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        /* Fleet Summary Styles */
-        .fleet-summary {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid #EEF9F7;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .fleet-summary::before {
+        .combined-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -663,7 +652,7 @@
             background: linear-gradient(90deg, #54BDA6 0%, #86C8EE 50%, #682F9B 100%);
         }
 
-        .fleet-summary-title {
+        .combined-card-title {
             font-family: 'Telkomsel Batik Sans';
             font-size: 20px;
             font-weight: 600;
@@ -673,7 +662,7 @@
             position: relative;
         }
 
-        .fleet-summary-title::after {
+        .combined-card-title::after {
             content: '';
             position: absolute;
             bottom: -8px;
@@ -685,6 +674,7 @@
             border-radius: 2px;
         }
 
+        /* Fleet Summary + Rating styles */
         .fleet-metrics {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -810,20 +800,81 @@
             color: #2d3748;
         }
 
-        /* Pie Chart Styles */
+        .rating-percent {
+            font-size: 13px;
+            font-weight: 500;
+            color: #4a5568;
+            margin-left: 4px;
+        }
+
+        /* Destination + Status styles */
+        .destination-details {
+            margin-bottom: 25px;
+        }
+
+        .destination-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .destination-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .destination-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .destination-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .destination-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #4a5568;
+            margin-bottom: 4px;
+        }
+
+        .destination-count {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2d3748;
+            font-family: 'Telkomsel Batik Sans', sans-serif;
+        }
+
+        /* Enhanced Pie Chart Styles */
         .pie-chart-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 40px;
-            height: 300px;
-            padding: 20px 0;
+            gap: 30px;
+            padding: 10px 0;
             position: relative;
         }
 
         .pie-chart {
-            width: 200px;
-            height: 200px;
+            width: 280px;
+            height: 280px;
             position: relative;
         }
 
@@ -849,7 +900,7 @@
         .pie-legend {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
 
         .legend-item-pie {
@@ -857,17 +908,18 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            min-width: 80px;
+            min-width: 90px;
         }
 
         .legend-value {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            font-family: 'Telkomsel Batik Sans', sans-serif;
         }
 
         .legend-label {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 500;
             color: #4a5568;
         }
@@ -900,40 +952,26 @@
             transform: translateY(0);
         }
 
-        @media (max-width: 768px) {
-            .additional-charts {
-                grid-template-columns: 1fr;
-            }
-            
-            .controls {
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-            
-            .multi-dropdown-toggle {
-                min-width: 120px;
-                font-size: 12px;
-                padding: 10px 30px 10px 12px;
-            }
+        .peak-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.4;
+            pointer-events: none;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            white-space: nowrap;
+        }
 
-            .pie-chart-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .pie-chart {
-                width: 180px;
-                height: 180px;
-            }
-
-            .fleet-metrics {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .fleet-metric-card {
-                padding: 15px;
-            }
+        .peak-tooltip.show {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -956,84 +994,99 @@
                     <div class="multi-dropdown-category">
                         <div class="multi-dropdown-item">Month</div>
                         <div class="multi-dropdown-submenu">
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('January')">January</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('February')">February</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('March')">March</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('April')">April</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('May')">May</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('June')">June</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('July')">July</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('August')">August</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('September')">September</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('October')">October</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('November')">November</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('December')">December</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'All')">All</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'January')">January</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'February')">February</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'March')">March</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'April')">April</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'May')">May</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'June')">June</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'July')">July</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'August')">August</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'September')">September</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'October')">October</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'November')">November</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'December')">December</div>
                         </div>
                     </div>
                     <div class="multi-dropdown-category">
                         <div class="multi-dropdown-item">Semester</div>
                         <div class="multi-dropdown-submenu">
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('H1')">H1 (Jan-Jun)</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('H2')">H2 (Jul-Dec)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'All')">All</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'H1')">H1 (Jan-Jun)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'H2')">H2 (Jul-Dec)</div>
                         </div>
                     </div>
                     <div class="multi-dropdown-category">
                         <div class="multi-dropdown-item">Quarter</div>
                         <div class="multi-dropdown-submenu">
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('Q1')">Q1 (Jan-Mar)</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('Q2')">Q2 (Apr-Jun)</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('Q3')">Q3 (Jul-Sep)</div>
-                            <div class="multi-dropdown-subitem" onclick="selectPeriod('Q4')">Q4 (Oct-Dec)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'All')">All</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'Q1')">Q1 (Jan-Mar)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'Q2')">Q2 (Apr-Jun)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'Q3')">Q3 (Jul-Sep)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'Q4')">Q4 (Oct-Dec)</div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="multi-dropdown" id="areaDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('areaDropdown')">
-                    <span>Area</span>
+                    <span>Select Area</span>
                 </div>
                 <div class="multi-dropdown-menu">
-                    <div class="multi-dropdown-item" onclick="selectArea('Head Office')">Head Office</div>
-                    <div class="multi-dropdown-item" onclick="selectArea('Area 1')">Area 1</div>
-                    <div class="multi-dropdown-item" onclick="selectArea('Area 2')">Area 2</div>
-                    <div class="multi-dropdown-item" onclick="selectArea('Area 3')">Area 3</div>
-                    <div class="multi-dropdown-item" onclick="selectArea('Area 4')">Area 4</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'All')">All</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'Head Office')">Head Office</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'Area 1')">Area 1</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'Area 2')">Area 2</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'Area 3')">Area 3</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'Area 4')">Area 4</div>
                 </div>
             </div>
+
             <div class="multi-dropdown" id="regionalDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('regionalDropdown')">
-                    <span>Regional</span>
+                    <span>Select Regional</span>
                 </div>
                 <div class="multi-dropdown-menu">
-                    <div class="multi-dropdown-item" onclick="selectRegional('Head Office')">Head Office</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Jabotabek')">Jabotabek</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Jawa Barat')">Jawa Barat</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Jawa Tengah')">Jawa Tengah</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Jawa Timur')">Jawa Timur</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Balinusra')">Balinusra</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Sumbagut')">Sumbagut</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Sumbagteng')">Sumbagteng</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Sumbagsel')">Sumbagsel</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Sulawesi')">Sulawesi</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Papua Maluku')">Papua Maluku</div>
-                    <div class="multi-dropdown-item" onclick="selectRegional('Kalimantan')">Kalimantan</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'All')">All</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Head Office')">Head Office</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Jabotabek')">Jabotabek</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'West Java')">West Java</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Central Java')">Central Java</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'East Java')">East Java</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Balinusra')">Balinusra</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'North Sumatra')">North Sumatra</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Central Sumatra')">Central Sumatra</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'South Sumatra')">South Sumatra</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Sulawesi')">Sulawesi</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Papua Maluku')">Papua Maluku</div>
+                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Kalimantan')">Kalimantan</div>
                 </div>
             </div>
+
             <div class="multi-dropdown" id="directorateDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('directorateDropdown')">
-                    <span>Directorate</span>
+                    <span>Select Directorate</span>
                 </div>
                 <div class="multi-dropdown-menu">
-                    <div class="multi-dropdown-item" onclick="selectDirectorate('IT Directorate')">IT Directorate</div>
-                    <div class="multi-dropdown-item" onclick="selectDirectorate('Marketing Directorate')">Marketing Directorate</div>
-                    <div class="multi-dropdown-item" onclick="selectDirectorate('Finance Directorate')">Finance Directorate</div>
-                    <div class="multi-dropdown-item" onclick="selectDirectorate('Human Capital Management Directorate')">Human Capital Management Directorate</div>
-                    <div class="multi-dropdown-item" onclick="selectDirectorate('CEO Office Directorate')">CEO's Office Directorate</div>
-                    <div class="multi-dropdown-item" onclick="selectDirectorate('Sales Directorate')">Sales Directorate</div>
-                    <div class="multi-dropdown-item" onclick="selectDirectorate('Network Directorate')">Network Directorate</div>
-                    <div class="multi-dropdown-item" onclick="selectDirectorate('Planning and Transformation Directorate')">Planning and Transformation Directorate</div>
+                    <div class="multi-dropdown-category">
+                        <div class="multi-dropdown-item">Directorate</div>
+                        <div class="multi-dropdown-submenu">
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'All')">All</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'IT Directorate')">IT Directorate</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'Marketing Directorate')">Marketing Directorate</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'Finance Directorate')">Finance Directorate</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'Human Capital Management Directorate')">Human Capital Management Directorate</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'CEO Office Directorate')">CEO's Office Directorate</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'Sales Directorate')">Sales Directorate</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'Network Directorate')">Network Directorate</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'Planning and Transformation Directorate')">Planning and Transformation Directorate</div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <button class="reset-filter-btn" onclick="resetFilters()">Reset Filter</button>
         </div>
 
         <div class="month-indicator" id="monthIndicator">
@@ -1053,7 +1106,7 @@
                 <div class="stat-title">Average Daily Trips</div>
                 <div class="stat-value">285</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" id="peakUsageCard">
                 <div class="stat-title">Peak Usage Time</div>
                 <div class="stat-value">Afternoon</div>
             </div>
@@ -1089,8 +1142,8 @@
             </div>
 
             <div class="chart-card">
-                <div class="chart-title">Top 8 Drivers</div>
-                <ul class="top-list" id="driversList">
+                <div class="chart-title">Top 8 Directorate</div>
+                <ul class="top-list" id="directorateList">
                     <!-- Content will be generated by JavaScript -->
                 </ul>
                 <div class="scroll-indicator">
@@ -1133,9 +1186,11 @@
             </div>
         </div>
 
-        <div class="additional-charts">
-            <div class="fleet-summary">
-                <div class="fleet-summary-title">Fleet Summary</div>
+        <!-- Combined Sections -->
+        <div class="combined-sections">
+            <!-- Fleet Summary + Driver Rating Distribution -->
+            <div class="combined-card">
+                <div class="combined-card-title">Fleet Summary & Driver Rating Distribution</div>
                 
                 <div class="fleet-metrics">
                     <div class="fleet-metric-card">
@@ -1163,16 +1218,37 @@
                 </div>
             </div>
 
-            <div class="mini-chart-card">
-                <div class="mini-chart-title">Status Order</div>
-                <div class="pie-chart-container" id="statusChart">
-                    <div class="pie-chart">
-                        <svg viewBox="0 0 100 100" id="pieChartSvg">
-                            <!-- Pie slices will be generated by JavaScript -->
-                        </svg>
+            <!-- Destination Details + Status Order -->
+            <div class="combined-card">
+                <div class="combined-card-title">Destination Details & Status Order</div>
+                
+                <div class="destination-details">
+                    <div class="destination-title">Destination Details</div>
+                    <div class="destination-grid">
+                        <div class="destination-item">
+                            <div class="destination-icon">📍</div>
+                            <div class="destination-name">Jemput</div>
+                            <div class="destination-count">156</div>
+                        </div>
+                        <div class="destination-item">
+                            <div class="destination-icon">🚩</div>
+                            <div class="destination-name">Antar</div>
+                            <div class="destination-count">87</div>
+                        </div>
                     </div>
-                    <div class="pie-legend" id="pieLegend">
-                        <!-- Legend will be generated by JavaScript -->
+                </div>
+
+                <div class="status-order">
+                    <div class="destination-title">Status Order</div>
+                    <div class="pie-chart-container" id="statusChart">
+                        <div class="pie-chart">
+                            <svg viewBox="0 0 100 100" id="pieChartSvg">
+                                <!-- Pie slices will be generated by JavaScript -->
+                            </svg>
+                        </div>
+                        <div class="pie-legend" id="pieLegend">
+                            <!-- Legend will be generated by JavaScript -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1195,16 +1271,16 @@
             fleetData[index + 1] = usage;
         });
 
-        // Driver data (8 drivers)
-        const driversData = [
-            { name: "Ahmad Santoso", trips: 89 },
-            { name: "Budi Wijaya", trips: 76 },
-            { name: "Candra Pratama", trips: 68 },
-            { name: "Dewi Sartika", trips: 54 },
-            { name: "Eko Prasetyo", trips: 47 },
-            { name: "Fajar Nugraha", trips: 39 },
-            { name: "Gunawan Setiawan", trips: 35 },
-            { name: "Hendra Wijaya", trips: 32 }
+        // Directorate data (8 directorates)
+        const directorateData = [
+            { name: "IT Directorate", trips: 89 },
+            { name: "Marketing Directorate", trips: 76 },
+            { name: "Finance Directorate", trips: 68 },
+            { name: "Human Capital Management Directorate", trips: 54 },
+            { name: "CEO Office Directorate", trips: 47 },
+            { name: "Sales Directorate", trips: 39 },
+            { name: "Network Directorate", trips: 35 },
+            { name: "Planning and Transformation Directorate", trips: 32 }
         ];
 
         // Driver rating distribution data
@@ -1246,7 +1322,9 @@
             if (dropdownId === 'periodDropdown') {
                 const monthIndicator = document.getElementById('monthIndicator');
                 
-                if (value.includes('Q') || value.includes('H') || value.length === 4) {
+                if (value === 'All') {
+                    monthIndicator.textContent = 'All Periods 2025';
+                } else if (value.includes('Q') || value.includes('H') || value.length === 4) {
                     monthIndicator.textContent = `${value} 2025`;
                 } else {
                     monthIndicator.textContent = `${value} 2025`;
@@ -1326,6 +1404,33 @@
         function hidePieTooltip() {
             const tooltip = document.getElementById('pie-tooltip');
             tooltip.classList.remove('show');
+        }
+
+        function resetFilters() {
+            // Reset dropdowns
+            const dropdowns = [
+                'periodDropdown',
+                'areaDropdown',
+                'regionalDropdown',
+                'directorateDropdown'
+            ];
+            dropdowns.forEach(id => {
+                const toggle = document.querySelector(`#${id} .multi-dropdown-toggle span`);
+                if (toggle) {
+                    if (id === 'periodDropdown') {
+                        toggle.textContent = 'Select Period';
+                    } else if (id === 'areaDropdown') {
+                        toggle.textContent = 'Select Area';
+                    } else if (id === 'regionalDropdown') {
+                        toggle.textContent = 'Select Regional';
+                    } else if (id === 'directorateDropdown') {
+                        toggle.textContent = 'Select Directorate';
+                    }
+                }
+            });
+            // Reset month indicator
+            const monthIndicator = document.getElementById('monthIndicator');
+            if (monthIndicator) monthIndicator.textContent = 'August 2025';
         }
 
         function generateHeatmap() {
@@ -1488,21 +1593,21 @@
             });
         }
 
-        function generateDriversList() {
-            const listElement = document.getElementById('driversList');
+        function generateDirectorateList() {
+            const listElement = document.getElementById('directorateList');
             let html = '';
 
-            const sortedDrivers = driversData.sort((a, b) => b.trips - a.trips);
+            const sortedDirectorates = directorateData.sort((a, b) => b.trips - a.trips);
 
-            sortedDrivers.forEach((driver, index) => {
+            sortedDirectorates.forEach((directorate, index) => {
                 const rank = index + 1;
                 html += `
                     <li class="top-item">
                         <div class="top-item-left">
                             <div class="top-rank rank-${rank}">${rank}</div>
-                            <div class="top-name">${driver.name}</div>
+                            <div class="top-name">${directorate.name}</div>
                         </div>
-                        <div class="top-value">${driver.trips.toLocaleString('en-US')}</div>
+                        <div class="top-value">${directorate.trips.toLocaleString('en-US')}</div>
                     </li>
                 `;
             });
@@ -1513,24 +1618,23 @@
         function generateRatingBars() {
             const container = document.getElementById('ratingBars');
             const maxCount = Math.max(...ratingData.map(r => r.count));
-            
+            const totalCount = ratingData.reduce((sum, r) => sum + r.count, 0);
             let html = '';
             ratingData.forEach(item => {
-                const percentage = maxCount > 0 ? (item.count / maxCount) * 100 : 0;
-                
+                const percentage = totalCount > 0 ? (item.count / totalCount) * 100 : 0;
+                const barWidth = maxCount > 0 ? (item.count / maxCount) * 100 : 0;
                 html += `
                     <div class="rating-bar">
                         <div class="rating-label">
                             ${item.rating}<span class="rating-star">★</span>
                         </div>
                         <div class="rating-bar-container">
-                            <div class="rating-bar-fill" style="width: ${percentage}%"></div>
+                            <div class="rating-bar-fill" style="width: ${barWidth}%"></div>
                         </div>
-                        <div class="rating-count">${item.count}</div>
+                        <div class="rating-count">${item.count} <span class="rating-percent">(${percentage.toFixed(1)}%)</span></div>
                     </div>
                 `;
             });
-            
             container.innerHTML = html;
         }
 
@@ -1539,7 +1643,7 @@
             const legend = document.getElementById('pieLegend');
             
             const total = statusData.reduce((sum, item) => sum + item.count, 0);
-            const radius = 45; // Increased radius for full pie chart
+            const radius = 45; // Increased radius for larger pie chart
             const centerX = 50;
             const centerY = 50;
             
@@ -1598,7 +1702,7 @@
         // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', function() {
             generateHeatmap();
-            generateDriversList();
+            generateDirectorateList();
             generateRatingBars();
             drawDailyChart();
             generatePieChart();
