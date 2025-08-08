@@ -210,22 +210,22 @@
             color: white;
         }
 
-        .reset-filter-btn {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            border: 2px solid #e2e8f0;
+        .reset-button {
+            background: linear-gradient(135deg, #B90024 0%, #8B0019 100%);
+            color: white;
+            border: none;
             border-radius: 12px;
-            padding: 12px 16px;
+            padding: 12px 20px;
             font-size: 14px;
             font-weight: 500;
-            color: #2d3748;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(185, 0, 36, 0.2);
         }
 
-        .reset-filter-btn:hover {
-            border-color: #54BDA6;
-            box-shadow: 0 4px 12px rgba(84, 189, 166, 0.15);
+        .reset-button:hover {
             transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(185, 0, 36, 0.3);
         }
 
         .month-indicator {
@@ -988,105 +988,106 @@
         <div class="controls">
             <div class="multi-dropdown" id="periodDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('periodDropdown')">
-                    <span>Select Period</span>
+                    <span>Select Period (All)</span>
                 </div>
                 <div class="multi-dropdown-menu">
+                    <div class="multi-dropdown-item" onclick="selectPeriod('All')">All</div>
                     <div class="multi-dropdown-category">
                         <div class="multi-dropdown-item">Month</div>
                         <div class="multi-dropdown-submenu">
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'All')">All</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'January')">January</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'February')">February</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'March')">March</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'April')">April</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'May')">May</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'June')">June</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'July')">July</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'August')">August</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'September')">September</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'October')">October</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'November')">November</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'December')">December</div>
-                        </div>
-                    </div>
-                    <div class="multi-dropdown-category">
-                        <div class="multi-dropdown-item">Semester</div>
-                        <div class="multi-dropdown-submenu">
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'All')">All</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'H1')">H1 (Jan-Jun)</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'H2')">H2 (Jul-Dec)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('January')">January</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('February')">February</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('March')">March</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('April')">April</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('May')">May</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('June')">June</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('July')">July</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('August')">August</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('September')">September</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('October')">October</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('November')">November</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('December')">December</div>
                         </div>
                     </div>
                     <div class="multi-dropdown-category">
                         <div class="multi-dropdown-item">Quarter</div>
                         <div class="multi-dropdown-submenu">
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'All')">All</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'Q1')">Q1 (Jan-Mar)</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'Q2')">Q2 (Apr-Jun)</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'Q3')">Q3 (Jul-Sep)</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'Q4')">Q4 (Oct-Dec)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('Q1')">Q1 (Jan-Mar)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('Q2')">Q2 (Apr-Jun)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('Q3')">Q3 (Jul-Sep)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('Q4')">Q4 (Oct-Dec)</div>
+                        </div>
+                    </div>
+                    <div class="multi-dropdown-category">
+                        <div class="multi-dropdown-item">Semester</div>
+                        <div class="multi-dropdown-submenu">
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('H1')">H1 (Jan-Jun)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('H2')">H2 (Jul-Dec)</div>
+                        </div>
+                    </div>
+                    <div class="multi-dropdown-category">
+                        <div class="multi-dropdown-item">Year</div>
+                        <div class="multi-dropdown-submenu">
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('2025')">2025</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('2024')">2024</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('2023')">2023</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('2022')">2022</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('2021')">2021</div>
+                            <div class="multi-dropdown-subitem" onclick="selectPeriod('2020')">2020</div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="multi-dropdown" id="areaDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('areaDropdown')">
-                    <span>Select Area</span>
+                    <span>Area (All)</span>
                 </div>
                 <div class="multi-dropdown-menu">
-                    <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'All')">All</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'Head Office')">Head Office</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'Area 1')">Area 1</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'Area 2')">Area 2</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'Area 3')">Area 3</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'Area 4')">Area 4</div>
+                    <div class="multi-dropdown-item" onclick="selectArea('All')">All</div>
+                    <div class="multi-dropdown-item" onclick="selectArea('Head Office')">Head Office</div>
+                    <div class="multi-dropdown-item" onclick="selectArea('Area 1')">Area 1</div>
+                    <div class="multi-dropdown-item" onclick="selectArea('Area 2')">Area 2</div>
+                    <div class="multi-dropdown-item" onclick="selectArea('Area 3')">Area 3</div>
+                    <div class="multi-dropdown-item" onclick="selectArea('Area 4')">Area 4</div>
                 </div>
             </div>
-
             <div class="multi-dropdown" id="regionalDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('regionalDropdown')">
-                    <span>Select Regional</span>
+                    <span>Region (All)</span>
                 </div>
                 <div class="multi-dropdown-menu">
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'All')">All</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Head Office')">Head Office</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Jabotabek')">Jabotabek</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'West Java')">West Java</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Central Java')">Central Java</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'East Java')">East Java</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Balinusra')">Balinusra</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'North Sumatra')">North Sumatra</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Central Sumatra')">Central Sumatra</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'South Sumatra')">South Sumatra</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Sulawesi')">Sulawesi</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Papua Maluku')">Papua Maluku</div>
-                    <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'Kalimantan')">Kalimantan</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('All')">All</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('Head Office')">Head Office</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('Jabotabek')">Jabotabek</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('West Java')">West Java</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('Central Java')">Central Java</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('East Java')">East Java</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('Balinusra')">Balinusra</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('North Sumatra')">North Sumatra</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('Central Sumatra')">Central Sumatra</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('South Sumatra')">South Sumatra</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('Sulawesi')">Sulawesi</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('Papua Maluku')">Papua Maluku</div>
+                    <div class="multi-dropdown-item" onclick="selectRegional('Kalimantan')">Kalimantan</div>
                 </div>
             </div>
-
             <div class="multi-dropdown" id="directorateDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('directorateDropdown')">
-                    <span>Select Directorate</span>
+                    <span>Directorate (All)</span>
                 </div>
                 <div class="multi-dropdown-menu">
-                    <div class="multi-dropdown-category">
-                        <div class="multi-dropdown-item">Directorate</div>
-                        <div class="multi-dropdown-submenu">
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'All')">All</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'IT Directorate')">IT Directorate</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'Marketing Directorate')">Marketing Directorate</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'Finance Directorate')">Finance Directorate</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'Human Capital Management Directorate')">Human Capital Management Directorate</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'CEO Office Directorate')">CEO's Office Directorate</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'Sales Directorate')">Sales Directorate</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'Network Directorate')">Network Directorate</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('directorateDropdown', 'Planning and Transformation Directorate')">Planning and Transformation Directorate</div>
-                        </div>
-                    </div>
+                    <div class="multi-dropdown-item" onclick="selectDirectorate('All')">All</div>
+                    <div class="multi-dropdown-item" onclick="selectDirectorate('IT Directorate')">IT Directorate</div>
+                    <div class="multi-dropdown-item" onclick="selectDirectorate('Marketing Directorate')">Marketing Directorate</div>
+                    <div class="multi-dropdown-item" onclick="selectDirectorate('Finance Directorate')">Finance Directorate</div>
+                    <div class="multi-dropdown-item" onclick="selectDirectorate('Human Capital Management Directorate')">Human Capital Management Directorate</div>
+                    <div class="multi-dropdown-item" onclick="selectDirectorate('CEO Office Directorate')">CEO's Office Directorate</div>
+                    <div class="multi-dropdown-item" onclick="selectDirectorate('Sales Directorate')">Sales Directorate</div>
+                    <div class="multi-dropdown-item" onclick="selectDirectorate('Network Directorate')">Network Directorate</div>
+                    <div class="multi-dropdown-item" onclick="selectDirectorate('Planning and Transformation Directorate')">Planning and Transformation Directorate</div>
                 </div>
             </div>
-            <button class="reset-filter-btn" onclick="resetFilters()">Reset Filter</button>
+            <button class="reset-button" onclick="resetAllFilters()">Reset Filters</button>
         </div>
 
         <div class="month-indicator" id="monthIndicator">
@@ -1330,6 +1331,56 @@
                     monthIndicator.textContent = `${value} 2025`;
                 }
             }
+        }
+
+        function selectPeriod(period) {
+            const toggle = document.querySelector('#periodDropdown .multi-dropdown-toggle span');
+            toggle.textContent = period;
+            document.getElementById('periodDropdown').classList.remove('open');
+            
+            // Update month indicator
+            const monthIndicator = document.getElementById('monthIndicator');
+            
+            if (period === 'All') {
+                monthIndicator.textContent = 'August 2025';
+            } else if (period.includes('Q') || period.includes('H') || period.length === 4) {
+                monthIndicator.textContent = `${period}`;
+            } else {
+                monthIndicator.textContent = `${period}`;
+            }
+        }
+
+        function selectArea(area) {
+            const toggle = document.querySelector('#areaDropdown .multi-dropdown-toggle span');
+            toggle.textContent = area;
+            document.getElementById('areaDropdown').classList.remove('open');
+        }
+
+        function selectDirectorate(directorate) {
+            const toggle = document.querySelector('#directorateDropdown .multi-dropdown-toggle span');
+            toggle.textContent = directorate;
+            document.getElementById('directorateDropdown').classList.remove('open');
+        }
+
+        function selectRegional(regional) {
+            const toggle = document.querySelector('#regionalDropdown .multi-dropdown-toggle span');
+            toggle.textContent = regional;
+            document.getElementById('regionalDropdown').classList.remove('open');
+        }
+
+        // Reset all filters function
+        function resetAllFilters() {
+            // Reset all dropdowns to "All"
+            document.querySelector('#periodDropdown .multi-dropdown-toggle span').textContent = 'Select Period (All)';
+            document.querySelector('#areaDropdown .multi-dropdown-toggle span').textContent = 'Area (All)';
+            document.querySelector('#regionalDropdown .multi-dropdown-toggle span').textContent = 'Region (All)';
+            document.querySelector('#directorateDropdown .multi-dropdown-toggle span').textContent = 'Directorate (All)';
+            
+            // Reset month indicator to August (default)
+            document.getElementById('monthIndicator').textContent = 'August 2025';
+            
+            // Close all dropdowns
+            document.querySelectorAll('.multi-dropdown').forEach(d => d.classList.remove('open'));
         }
 
         // Close dropdown when clicking outside

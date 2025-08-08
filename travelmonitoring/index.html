@@ -775,7 +775,7 @@
         <div class="controls">
             <div class="multi-dropdown" id="periodDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('periodDropdown')">
-                    <span>All</span>
+                    <span>Select Period (All)</span>
                 </div>
                 <div class="multi-dropdown-menu">
                     <div class="multi-dropdown-item" onclick="selectFilter('periodDropdown', 'All')">All</div>
@@ -797,13 +797,6 @@
                         </div>
                     </div>
                     <div class="multi-dropdown-category">
-                        <div class="multi-dropdown-item">Semester</div>
-                        <div class="multi-dropdown-submenu">
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'H1')">H1 (Jan-Jun)</div>
-                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'H2')">H2 (Jul-Dec)</div>
-                        </div>
-                    </div>
-                    <div class="multi-dropdown-category">
                         <div class="multi-dropdown-item">Quarter</div>
                         <div class="multi-dropdown-submenu">
                             <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'Q1')">Q1 (Jan-Mar)</div>
@@ -812,11 +805,29 @@
                             <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'Q4')">Q4 (Oct-Dec)</div>
                         </div>
                     </div>
+                    <div class="multi-dropdown-category">
+                        <div class="multi-dropdown-item">Semester</div>
+                        <div class="multi-dropdown-submenu">
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'H1')">H1 (Jan-Jun)</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', 'H2')">H2 (Jul-Dec)</div>
+                        </div>
+                    </div>
+                    <div class="multi-dropdown-category">
+                        <div class="multi-dropdown-item">Year</div>
+                        <div class="multi-dropdown-submenu">
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', '2025')">2025</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', '2024')">2024</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', '2023')">2023</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', '2022')">2022</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', '2021')">2021</div>
+                            <div class="multi-dropdown-subitem" onclick="selectFilter('periodDropdown', '2020')">2020</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="multi-dropdown" id="areaDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('areaDropdown')">
-                    <span>All</span>
+                    <span>Area (All)</span>
                 </div>
                 <div class="multi-dropdown-menu">
                     <div class="multi-dropdown-item" onclick="selectFilter('areaDropdown', 'All')">All</div>
@@ -829,7 +840,7 @@
             </div>
             <div class="multi-dropdown" id="regionalDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('regionalDropdown')">
-                    <span>All</span>
+                    <span>Region (All)</span>
                 </div>
                 <div class="multi-dropdown-menu">
                     <div class="multi-dropdown-item" onclick="selectFilter('regionalDropdown', 'All')">All</div>
@@ -849,7 +860,7 @@
             </div>
             <div class="multi-dropdown" id="directorateDropdown">
                 <div class="multi-dropdown-toggle" onclick="toggleMultiDropdown('directorateDropdown')">
-                    <span>All</span>
+                    <span>Directorate (All)</span>
                 </div>
                 <div class="multi-dropdown-menu">
                     <div class="multi-dropdown-item" onclick="selectFilter('directorateDropdown', 'All')">All</div>
@@ -1054,9 +1065,9 @@
                 if (value === 'All') {
                     monthIndicator.textContent = 'August 2025';
                 } else if (value.includes('Q') || value.includes('H') || value.length === 4) {
-                    monthIndicator.textContent = `${value} 2025`;
+                    monthIndicator.textContent = `${value}`;
                 } else {
-                    monthIndicator.textContent = `${value} 2025`;
+                    monthIndicator.textContent = `${value}`;
                 }
             }
         }
@@ -1064,10 +1075,10 @@
         // Reset all filters function
         function resetAllFilters() {
             // Reset all dropdowns to "All"
-            document.querySelector('#periodDropdown .multi-dropdown-toggle span').textContent = 'All';
-            document.querySelector('#areaDropdown .multi-dropdown-toggle span').textContent = 'All';
-            document.querySelector('#regionalDropdown .multi-dropdown-toggle span').textContent = 'All';
-            document.querySelector('#directorateDropdown .multi-dropdown-toggle span').textContent = 'All';
+            document.querySelector('#periodDropdown .multi-dropdown-toggle span').textContent = 'Select Period (All)';
+            document.querySelector('#areaDropdown .multi-dropdown-toggle span').textContent = 'Area (All)';
+            document.querySelector('#regionalDropdown .multi-dropdown-toggle span').textContent = 'Region (All)';
+            document.querySelector('#directorateDropdown .multi-dropdown-toggle span').textContent = 'Directorate (All)';
             
             // Reset month indicator to August (default)
             document.getElementById('monthIndicator').textContent = 'August 2025';
